@@ -4,7 +4,15 @@
 </div>
 
 <div *ngFor="let post of posts" class="flex flex-col items-center">
-    <div class="max-w-lg p-[5%] m-[5%] overflow-hidden border border-gray-300 rounded hover:border-gray-600">
-        <p class="mb-2 text-xl font-bold"> {{post.title}} </p>
+    <div class="min-w-[30%] mt-[3%]  overflow-hidden border border-gray-300 rounded hover:border-gray-600">
+        <div class="space-x-[2%]">
+            <div class="flex flex-row space-x-[2%] text-slate-400 ">
+                <p>{{"posted by " + post.op}}</p> <p> {{ post.created_on | date:'MMM dd, hh:mm a '}} </p>
+            </div>
+            <div class="">
+                <h2 class="mb-2 text-xl font-semibold text-left "> {{post.title}} </h2>
+                <p class="text-left" > {{post.text}} </p>
+            </div>
+        </div>
     </div>
 </div>
