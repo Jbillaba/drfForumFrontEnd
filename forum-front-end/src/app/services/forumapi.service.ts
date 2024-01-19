@@ -19,4 +19,8 @@ export class ForumapiService {
     return this.httpClient.get(this.API_POSTS_ENDPOINT)
   }
 
+  login(){
+    
+  }
+
 }

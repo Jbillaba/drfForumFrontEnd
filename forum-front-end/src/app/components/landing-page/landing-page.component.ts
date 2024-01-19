@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ForumapiService } from '../../services/forumapi.service';
 import { CommonModule } from '@angular/common';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NavBarComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css'
 })
