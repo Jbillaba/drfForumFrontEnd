@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ForumapiService } from '../../services/forumapi.service';
 
 @Component({
   selector: 'app-register-page',
@@ -10,6 +11,8 @@ import {FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular
 })
 export class RegisterPageComponent {
 
+  users:any;
+  constructor(private forumApiService: ForumapiService) {}
   passMinLength: number = 8;
 
   registerForm = new FormGroup({
@@ -21,6 +24,6 @@ export class RegisterPageComponent {
 
   });
   onSubmit(){
-    console.warn(this.registerForm.value);
+    this.forumApiService.postRegister(this.registerForm.value).subscribe(user => this.users.push(user))
   }
 }
