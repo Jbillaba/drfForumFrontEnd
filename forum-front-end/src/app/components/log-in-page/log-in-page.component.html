@@ -1,10 +1,15 @@
 <!-- TODO: add post functionalty on this end-->
 
 <div class="flex flex-col m-[5%] space-y-[5%] max-w-[20%]">
-        <input type="text" placeholder="enter username" class="border rounded border-gray-300 hover:border-gray-600" >
-        <input type="password" placeholder="enter password" class="border rounded border-gray-300 hover:border-gray-600" >
-    <div class="flex flex-row space-x-[5%] p-[1%]"  >
-       <a routerLink="/register"  routerLinkActive="active" class="border rounded border-gray-300 hover:border-gray-600 max-w-[20%] p-[1%]"> register  </a>
-        <input type="submit" value="login" class="border rounded border-gray-300 hover:border-gray-600 max-w-[20%] p-[1%]"  >
-    </div>
+    <form [formGroup]="logInForm" (ngSubmit)="onSubmit()" >
+        
+        
+        <input type="text" placeholder="enter username" class="border rounded border-gray-300 hover:border-gray-600" formControlName="username" >
+        <input type="password" placeholder="enter password" class="border rounded border-gray-300 hover:border-gray-600" formControlName="password" >
+    <br>
+        <a routerLink="/register" routerLinkActive="active"  class="border rounded border-gray-300 hover:border-gray-600 max-w-[25%] p-[2%]"> register </a>
+        <input type="submit" value="log In" class="border rounded border-gray-300 hover:border-gray-600 max-w-[25%] p-[2%]" [disabled]="!logInForm.valid" >
+    </form>
+    
+    <p> {{"so far the form is " + logInForm.status}}</p>
 </div>

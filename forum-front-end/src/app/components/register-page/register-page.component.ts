@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ForumapiService } from '../../services/forumapi.service';
 import { CommonModule } from '@angular/common';
@@ -14,8 +15,10 @@ import { MustMatch } from '../../_helpers';
 export class RegisterPageComponent {
 
   users:any;
-  constructor(private forumApiService: ForumapiService) {}
   passMinLength: number = 8;
+
+  constructor(private forumApiService: ForumapiService,
+              private router: Router) {}
 
   registerForm = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
@@ -29,7 +32,16 @@ export class RegisterPageComponent {
   });
 
   onSubmit(){
-    this.forumApiService.postRegister(this.registerForm.value).subscribe(user => this.users.push(user))
+    const val = this.registerForm.value;
+
+    if (val.email && val.username && val.name && val.password && val.password2){
+      this.forumApiService.postRegister(val.email, val.username, val.name, val.password, val.password2).subscribe(
+        () => {
+          console.log("user is registered")
+          this.router.navigateByUrl("/login")
+        }
+      )
+    }
   }
 
   
