@@ -1,5 +1,7 @@
-
-<div>
+<div *ngIf="!loggedIn">
+    <input type="text" class="min-w-[30%] rounded border-gray-300 hover:border-gray-600" placeholder="log in to submit a post..."> 
+</div>
+<div *ngIf="loggedIn" >
     <input type="text" class="min-w-[30%] rounded border-gray-300 hover:border-gray-600" placeholder="post something...">
 </div>
 

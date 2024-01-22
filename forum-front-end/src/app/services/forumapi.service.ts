@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class ForumapiService {
   constructor(private httpClient: HttpClient) { }
 
   getUsers(){
-    return this.httpClient.get(this.API_POSTS_ENDPOINT)
+    return this.httpClient.get(this.API_USERS_ENDPOINT)
   }
 
   getPosts(){

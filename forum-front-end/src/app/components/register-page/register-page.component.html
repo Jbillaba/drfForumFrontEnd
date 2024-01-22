@@ -6,8 +6,10 @@
         <input type="password" placeholder="enter password" class="border rounded border-gray-300 hover:border-gray-600" formControlName="password" >
         <input type="password" placeholder="confirm password" class="border rounded border-gray-300 hover:border-gray-600" formControlName="password2" >
     <br>
-        <input type="submit" value="sign up" class="border rounded border-gray-300 hover:border-gray-600 max-w-[25%] p-[2%]" [disabled]="!registerForm.valid" >
+        <input type="submit" value="register account" class="border rounded border-gray-300 hover:border-gray-600 max-w-[40%] p-[2%]" [disabled]="!registerForm.valid" >
     </form>
     
     <p> {{"so far the form is " + registerForm.status}}</p>
 </div>
+
+<!-- TODO: add some css where the button to register is completely greyed out so the user knows it cant be pressed yet  -->

@@ -3,10 +3,12 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { LogInPageComponent } from './components/log-in-page/log-in-page.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
 
 export const routes: Routes = [
     {path: '', component: LandingPageComponent},
     {path: 'login', component: LogInPageComponent},
     {path: 'register', component: RegisterPageComponent},
+    {path: 'submitpost', component: CreatePostComponent},
     {path:'**', component: PageNotFoundComponent},
 ];
