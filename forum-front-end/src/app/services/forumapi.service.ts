@@ -34,6 +34,10 @@ export class ForumapiService {
     return this.httpClient.get(this.API_POSTS_ENDPOINT + postId + "/")
   }
 
+  createPost(title: string, text: string) {
+    return this.httpClient.post(this.API_POSTS_ENDPOINT, {title, text}, httpOptions)
+  }
+
   userRegister(email: string, username: string, name: string, password: string, password2: string){
     return this.httpClient.post(this.API_REGISTER_ENDPOINT, {email, username, name, password, password2}, httpOptions)
   }

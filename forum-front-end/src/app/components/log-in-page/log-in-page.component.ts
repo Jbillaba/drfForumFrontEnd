@@ -12,7 +12,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './log-in-page.component.css'
 })
 export class LogInPageComponent {
-  users: any;
 
   constructor(private forumApiService: ForumapiService,
               private router: Router,
