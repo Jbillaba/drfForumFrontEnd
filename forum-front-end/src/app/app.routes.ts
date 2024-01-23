@@ -4,11 +4,13 @@ import { LogInPageComponent } from './components/log-in-page/log-in-page.compone
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+import { PostDetailsComponent } from './components/post-details/post-details.component';
 
 export const routes: Routes = [
     {path: '', component: LandingPageComponent},
     {path: 'login', component: LogInPageComponent},
     {path: 'register', component: RegisterPageComponent},
     {path: 'submitpost', component: CreatePostComponent},
+    {path: 'post/:postid', component: PostDetailsComponent },
     {path:'**', component: PageNotFoundComponent},
 ];
