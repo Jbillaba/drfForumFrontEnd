@@ -15,7 +15,6 @@ export class ForumapiService {
   private API_POSTS_ENDPOINT = 'http://localhost:8000/posts/'
   private API_REGISTER_ENDPOINT = 'http://localhost:8000/api/register/'
   private API_LOGIN_ENDPOINT = 'http://localhost:8000/api/token/'
-  private API_LOGOUT_ENDPOINT ='http://localhost:8000/api/logout'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -23,8 +22,8 @@ export class ForumapiService {
     return this.httpClient.get(this.API_USERS_ENDPOINT)
   }
 
-  getUser(){
-    return this.httpClient.get(this.API_USERS_ENDPOINT + "/<id>/")
+  getUser(userId: string){
+    return this.httpClient.get(this.API_USERS_ENDPOINT + userId + "/")
   }
 
   getPosts(){
