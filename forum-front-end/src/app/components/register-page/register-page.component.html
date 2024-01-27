@@ -1,12 +1,17 @@
-<div class="flex flex-col m-[5%] space-y-[5%] max-w-[20%]">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+<div class="flex flex-col py-[5%] ">
+    <h1 class="p-[2%] text-2xl" >Sign up for an account </h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-[1%] p-[1%] " >
         <input type="email" id="email" placeholder="enter email" class="border rounded border-gray-300 hover:border-gray-600" formControlName="email" required>
+        <br>
         <input type="text" placeholder="enter name" class="border rounded border-gray-300 hover:border-gray-600" formControlName="name">
+        <br>
         <input type="text" placeholder="enter username" class="border rounded border-gray-300 hover:border-gray-600" formControlName="username" >
+        <br>
         <input type="password" placeholder="enter password" class="border rounded border-gray-300 hover:border-gray-600" formControlName="password" >
+        <br>
         <input type="password" placeholder="confirm password" class="border rounded border-gray-300 hover:border-gray-600" formControlName="password2" >
-    <br>
-        <input type="submit" value="register account" class="border rounded border-gray-300 hover:border-gray-600 max-w-[40%] p-[2%]" [disabled]="!registerForm.valid" >
+        <br>
+        <input type="submit" value="register account" class="border rounded border-gray-300 hover:border-gray-600 bg-white min-w-[10%]  " [disabled]="!registerForm.valid" >
     </form>
     
     <p> {{"so far the form is " + registerForm.status}}</p>

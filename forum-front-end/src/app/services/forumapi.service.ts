@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { StorageService } from './storage.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+let authToken: any; 
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,12 @@ export class ForumapiService {
   private API_REGISTER_ENDPOINT = 'http://localhost:8000/api/register/'
   private API_LOGIN_ENDPOINT = 'http://localhost:8000/api/token/'
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              private storageService: StorageService) { }
+  
+   httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', "Authorization": `Bearer ${this.storageService.getToken()}`})
+};
 
   getUsers(){
     return this.httpClient.get(this.API_USERS_ENDPOINT)
@@ -35,15 +40,16 @@ export class ForumapiService {
   }
 
   createPost(title: string, text: string) {
-    return this.httpClient.post(this.API_POSTS_ENDPOINT, {title, text}, httpOptions)
+    console.log(this.httpOptions)
+    return this.httpClient.post(this.API_POSTS_ENDPOINT, {title, text}, this.httpOptions)
   }
 
   userRegister(email: string, username: string, name: string, password: string, password2: string){
-    return this.httpClient.post(this.API_REGISTER_ENDPOINT, {email, username, name, password, password2}, httpOptions)
+    return this.httpClient.post(this.API_REGISTER_ENDPOINT, {email, username, name, password, password2}, this.httpOptions)
   }
 
   logIn(username: string, password: string){
-    return this.httpClient.post(this.API_LOGIN_ENDPOINT, {username, password}, httpOptions)
+    return this.httpClient.post(this.API_LOGIN_ENDPOINT, {username, password}, this.httpOptions)
   }
 
   //find a way to implement a log out function 

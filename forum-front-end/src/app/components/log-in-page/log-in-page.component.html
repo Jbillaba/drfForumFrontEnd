@@ -1,16 +1,18 @@
 
 
-<div class="flex flex-col m-[5%] space-y-[5%] max-w-[20%]">
-    <form [formGroup]="logInForm" (ngSubmit)="onSubmit()" >
-        
-        
+<div class="flex flex-col justify-center py-[5%]">
+    <h1 class="text-2xl p-[1%]" > Welcome back</h1>
+    <form [formGroup]="logInForm" (ngSubmit)="onSubmit()" class="space-y-[1%]" >
         <input type="text" placeholder="enter username" class="border rounded border-gray-300 hover:border-gray-600" formControlName="username" >
+        <br>
         <input type="password" placeholder="enter password" class="border rounded border-gray-300 hover:border-gray-600" formControlName="password" >
     <br>
-        <a routerLink="/register" routerLinkActive="active"  class="border rounded border-gray-300 hover:border-gray-600 max-w-[25%] p-[2%]"> register </a>
-        <input type="submit" value="log In" class="border rounded border-gray-300 hover:border-gray-600 max-w-[25%] p-[2%]" [disabled]="!logInForm.valid" >
+        <input type="submit" value="log In" class="border rounded border-gray-300 hover:border-gray-600 bg-white min-w-[10%] " [disabled]="!logInForm.valid" >
+        <br>
+        <button routerLink="/register" routerLinkActive="active"  class="border rounded border-gray-300 hover:border-gray-600 bg-white min-w-[10%]"> register </button>
+        <br>
+        <button routerLink="" routerLinkActive="active" class=" border rounded border-gray-300 hover:border-gray-600 bg-white min-w-[10%] " > or browse as guest </button>
     </form>
     
     <p> {{"so far the form is " + logInForm.status}}</p>
-    <a routerLink="" routerLinkActive="active" class=" border rounded border-gray-300 hover:border-gray-600 max-w-[40%] p-[2%]  " > or browse as guest </a>
 </div>
