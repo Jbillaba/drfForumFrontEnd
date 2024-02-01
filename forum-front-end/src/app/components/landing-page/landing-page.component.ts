@@ -3,18 +3,18 @@ import { ForumapiService } from '../../services/forumapi.service';
 import { StorageService } from '../../services/storage.service';
 import { CommonModule } from '@angular/common';
 import {  Router, RouterModule,  } from '@angular/router';
-import e from 'express';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [CommonModule, RouterModule,  ],
+  imports: [CommonModule, RouterModule,   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css'
 })
 export class LandingPageComponent implements OnInit{
   posts: any;
   loggedIn: boolean = false;
+  
   constructor(private forumApiService: ForumapiService,
               private storageService: StorageService,
               private router: Router) {}

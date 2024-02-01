@@ -1,16 +1,15 @@
-<div *ngIf="post" class="py-[5%] bg-blue-200 " >
-
-<div class="flex flex-row space-x-[10%] px-[2%]">
+<div *ngIf="post" class="py-[20%] sm:py-[10%] 2xl:py-[5%] bg-stone-50 " >
+<div class="flex flex-row justify-center space-x-[1%]">
     <p> posted by, {{post.op}} </p> 
     <p> submitted, {{post.created_on}} </p> 
 </div>
-
-<div class="p-[2%] text-left">
+<div class="py-[5%]">
     <h1 class="text-3xl underline"> {{post.title}} </h1>
     <h2 class="text-2xl" > {{post.text}} </h2>
 </div>
 
 </div>
-<div *ngIf="!post">
+
+<div *ngIf="!post" class="py-[20%] sm:py-[10%] 2xl:py-[5%] " >
     <h1> oops, reload the page otherwise report this as a bug  </h1>
 </div>
