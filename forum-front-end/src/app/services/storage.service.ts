@@ -1,5 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 const USER_KEY ='auth-user';
 
 @Injectable({
@@ -7,7 +8,7 @@ const USER_KEY ='auth-user';
 })
 export class StorageService {
 
-  constructor() { }
+  constructor(private jwtHelper: JwtHelperService) { }
 
   clean(): void{
     window.sessionStorage.clear()
@@ -26,9 +27,13 @@ export class StorageService {
   }
 
   public getToken(): any {
+    if (this.isLoggedIn()) {
     const token : any = window.sessionStorage.getItem(USER_KEY)
     const authToken = JSON.parse(token).access
     return authToken;
+    }
+    else
+    return 
   }
 
   public isLoggedIn(): boolean {
@@ -40,5 +45,6 @@ export class StorageService {
     return false
   }
 
+  
 
 }

@@ -17,7 +17,6 @@ export class ForumapiService {
   private API_POSTS_ENDPOINT = 'http://localhost:8000/posts/?ordering=-created_on'
   private API_REGISTER_ENDPOINT = 'http://localhost:8000/api/register/'
   private API_LOGIN_ENDPOINT = 'http://localhost:8000/api/token/'
-  public loggedIn: boolean = this.storageService.isLoggedIn()
 
   constructor(private httpClient: HttpClient,
               private storageService: StorageService,
@@ -25,7 +24,7 @@ export class ForumapiService {
   
   
   httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', "Authorization": `Bearer ${this.storageService.getToken}`})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', "Authorization": `Bearer ${this.storageService.getToken()}`})
 };
 
   getUsers(){
@@ -34,6 +33,11 @@ export class ForumapiService {
 
   getUser(userId: string){
     return this.httpClient.get(this.API_USERS_ENDPOINT + userId + "/")
+  }
+
+  getCurrUser(){
+    authToken = this.storageService.getToken()
+
   }
 
   getPosts(){
@@ -54,7 +58,7 @@ export class ForumapiService {
   }
 
   logIn(username: string, password: string){
-    return this.httpClient.post(this.API_LOGIN_ENDPOINT, {username, password}, this.httpOptions)
+    return this.httpClient.post(this.API_LOGIN_ENDPOINT, {username, password})
   }
 
   //find a way to implement a log out function 
