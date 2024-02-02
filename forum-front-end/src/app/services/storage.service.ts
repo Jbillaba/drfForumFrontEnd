@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 const USER_KEY ='auth-user';
 
@@ -25,8 +26,9 @@ export class StorageService {
   }
 
   public getToken(): any {
-    const authToken = window.sessionStorage.getItem(USER_KEY)
-    return authToken
+    const token : any = window.sessionStorage.getItem(USER_KEY)
+    const authToken = JSON.parse(token).access
+    return authToken;
   }
 
   public isLoggedIn(): boolean {

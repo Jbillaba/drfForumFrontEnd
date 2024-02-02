@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { StorageService } from './storage.service';
+import { toJSDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-calendar';
 
 let authToken: any; 
 
@@ -16,16 +17,15 @@ export class ForumapiService {
   private API_POSTS_ENDPOINT = 'http://localhost:8000/posts/?ordering=-created_on'
   private API_REGISTER_ENDPOINT = 'http://localhost:8000/api/register/'
   private API_LOGIN_ENDPOINT = 'http://localhost:8000/api/token/'
-  
+  public loggedIn: boolean = this.storageService.isLoggedIn()
 
   constructor(private httpClient: HttpClient,
               private storageService: StorageService,
               private jwtHelper: JwtHelperService) { }
-
-  authToken = JSON.parse(this.storageService.getToken()).access;
+  
   
   httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', "Authorization": `Bearer ${this.authToken}`})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', "Authorization": `Bearer ${this.storageService.getToken}`})
 };
 
   getUsers(){
