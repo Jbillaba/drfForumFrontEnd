@@ -1,6 +1,5 @@
-import { JsonPipe } from '@angular/common';
-import { Injectable } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { DOCUMENT } from '@angular/common';
+import { Injectable, Inject, inject } from '@angular/core';
 const USER_KEY ='auth-user';
 
 @Injectable({
@@ -8,19 +7,20 @@ const USER_KEY ='auth-user';
 })
 export class StorageService {
 
-  constructor(private jwtHelper: JwtHelperService) { }
+  constructor(@Inject(DOCUMENT) private document: Document) { }
+  private sessionStorage = this.document.defaultView?.sessionStorage;
 
   clean(): void{
-    window.sessionStorage.clear()
+    this.sessionStorage?.clear()
   }
 
   public saveUser(user: any): void {
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user))
+    this.sessionStorage?.removeItem(USER_KEY);
+    this.sessionStorage?.setItem(USER_KEY, JSON.stringify(user))
   }
 
   public getUser(): any {
-    const user = window.sessionStorage.getItem(USER_KEY);
+    const user = this.sessionStorage?.getItem(USER_KEY);
     if (user) {
       return JSON.parse(user)
     }
@@ -28,7 +28,7 @@ export class StorageService {
 
   public getToken(): any {
     if (this.isLoggedIn()) {
-    const token : any = window.sessionStorage.getItem(USER_KEY)
+    const token : any = this.sessionStorage?.getItem(USER_KEY)
     const authToken = JSON.parse(token).access
     return authToken;
     }
@@ -37,7 +37,7 @@ export class StorageService {
   }
 
   public isLoggedIn(): boolean {
-    const user = window.sessionStorage.getItem(USER_KEY);
+    const user = this.sessionStorage?.getItem(USER_KEY);
 
     if (user) {
       return true

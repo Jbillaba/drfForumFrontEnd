@@ -36,8 +36,9 @@ export class ForumapiService {
   }
 
   getCurrUser(){
-    authToken = this.storageService.getToken()
-
+    authToken = JSON.parse(this.storageService.getToken()).access;
+   const decodedToken = this.jwtHelper.decodeToken(authToken)
+   return decodedToken
   }
 
   getPosts(){

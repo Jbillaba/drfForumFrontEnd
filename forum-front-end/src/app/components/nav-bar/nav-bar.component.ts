@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { StorageService } from '../../services/storage.service';
+import { ForumapiService } from '../../services/forumapi.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,7 +14,8 @@ import { StorageService } from '../../services/storage.service';
 export class NavBarComponent {
   private isVisible: boolean = false;
   visibilityClasses: {} | undefined;
-  constructor(public storageService: StorageService) {}
+  constructor(public storageService: StorageService,
+              public forumApiService: ForumapiService) {}
 
   ngOnInit(): void {
     this.setVisibility()
@@ -30,5 +32,7 @@ export class NavBarComponent {
       'opacity-100': this.isVisible
     }
   }
+
+
 
 }

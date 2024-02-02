@@ -22,6 +22,7 @@ export class LandingPageComponent implements OnInit{
   ngOnInit(): void {
     this.forumApiService.getPosts().subscribe(response => {this.posts = response })
     this.loggedIn = this.storageService.isLoggedIn()
+    
   }
 
  goToSubmitPost(){
@@ -30,6 +31,5 @@ export class LandingPageComponent implements OnInit{
   }
   else this.router.navigateByUrl("/submitpost")
  }
-
 
 }
