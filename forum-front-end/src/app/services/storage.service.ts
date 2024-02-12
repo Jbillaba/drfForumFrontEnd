@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Injectable, Inject, inject } from '@angular/core';
+import { Injectable, Inject} from '@angular/core';
 const USER_KEY ='auth-user';
 
 @Injectable({

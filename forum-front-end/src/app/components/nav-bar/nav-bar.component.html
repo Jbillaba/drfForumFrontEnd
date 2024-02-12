@@ -1,12 +1,12 @@
 <div *ngIf="!storageService.isLoggedIn()"   class="flex flex-row space-x-[10%] justify-center p-[1%] bg-slate-200 no-underline  ">
-    <a routerLink="/" routerLinkActive="active" > logo </a>
+    <a routerLink="/" routerLinkActive="active" > <img src=".../assets/wrodditLogo.png" alt="Site Logo"> </a>
     <input placeholder="search..." class="min-w-[50%] rounded border-gray-300 hover:border-gray-600  ">
     <a routerLink="/login" routerLinkActive="active"> Log in </a>
 </div>
     
 
 <nav *ngIf="storageService.isLoggedIn()" class="flex flex-row space-x-[10%] justify-center p-[1%] bg-slate-200 no-underline ">
-    <a routerLink="/" routerLinkActive="active" > logo </a>
+    <a routerLink="/" routerLinkActive="active" > <img src=".../assets/wrodditLogo" alt=""> </a>
     <input placeholder="search..." class="min-w-[40%] rounded border-gray-300 hover:border-gray-600 ">
     <a (click)="storageService.clean()"  routerLinkActive="active"> Log out </a>
 

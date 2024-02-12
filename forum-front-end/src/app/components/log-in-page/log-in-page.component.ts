@@ -3,11 +3,12 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ForumapiService } from '../../services/forumapi.service';
 import { StorageService } from '../../services/storage.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-log-in-page',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, ReactiveFormsModule ],
+  imports: [RouterLink, RouterLinkActive, ReactiveFormsModule, CommonModule ],
   templateUrl: './log-in-page.component.html',
   styleUrl: './log-in-page.component.css'
 })
