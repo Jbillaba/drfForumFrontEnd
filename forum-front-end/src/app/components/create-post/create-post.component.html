@@ -5,11 +5,9 @@
         <br>
         <input type="text" placeholder="text" class="border rounded border-gray-300 hover:border-gray-600" formControlName="text" >
         <br>
-        <input type="submit" value="submit post" class="border rounded border-gray-400 bg-white hover:border-gray-600 max-w-[25%]" [disabled]="!createPostForm.valid" >
+        <input *ngIf="createPostForm.valid" type="submit" value="submit post" class="border rounded border-gray-400 bg-white hover:border-gray-600 max-w-[25%]" [disabled]="!createPostForm.valid" >
+        <input *ngIf="!createPostForm.valid" type="submit" value="submit post" class="border rounded border-gray-300 hover:border-gray-600 bg-white min-w-[10%] opacity-50" [disabled]="!createPostForm.valid" >
+        <br>
+        <button routerLink="" routerLinkActive="active" class=" border rounded border-gray-300 hover:border-gray-600 bg-white min-w-[10%] " > go Back </button>
     </form>
 </div>
-
-
-<p> so far the form is {{createPostForm.status}}</p>
-
-<a routerLink="/" > GO BACK  </a>

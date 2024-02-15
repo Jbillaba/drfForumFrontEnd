@@ -32,6 +32,8 @@ export class NavBarComponent {
       'opacity-100': this.isVisible
     }
   }
+  
+  
 
 
 
