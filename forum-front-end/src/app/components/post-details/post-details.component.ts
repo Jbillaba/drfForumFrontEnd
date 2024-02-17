@@ -25,14 +25,13 @@ export class PostDetailsComponent {
     const postIdFromRoute = Number(routeParameter.get("postid"))
     const postIdToString = postIdFromRoute.toString()
     this.forumApiService.getPost(postIdToString).subscribe(response => this.post = response)
-    console.log(this.post)
   }
 
   onSubmitComment(){
     const val = this.createCommentForm.value;
-
+    const postUrl = this.post.url;
     if (val.text){
-      this.forumApiService.createComment(val.text).subscribe(comment => (comment))
+      this.forumApiService.createComment(val.text, postUrl).subscribe(comment => (comment))
     }
   }
 

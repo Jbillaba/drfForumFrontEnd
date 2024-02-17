@@ -49,12 +49,13 @@ export class ForumapiService {
     return this.httpClient.get(this.API_GET_POSTS_ENDPOINT + postId + "/")
   }
 
+
   createPost(title: string, text: string) {
     return this.httpClient.post(this.API_POSTS_ENDPOINT, {title, text}, this.httpOptions)
   }
   
-  createComment(text: string){
-    return this.httpClient.post(this.API_COMMENT_ENDPOINT, {text}, this.httpOptions)
+  createComment(text: string, post: string){
+    return this.httpClient.post(this.API_COMMENT_ENDPOINT, {text, post}, this.httpOptions)
   }
 
   userRegister(email: string, username: string, name: string, password: string, password2: string){
