@@ -37,7 +37,6 @@ export class RegisterPageComponent {
     if (val.email && val.username && val.name && val.password && val.password2){
       this.forumApiService.userRegister(val.email, val.username, val.name, val.password, val.password2).subscribe(
         () => {
-          console.log("user is registered")
           this.router.navigateByUrl("/login")
         }
       )

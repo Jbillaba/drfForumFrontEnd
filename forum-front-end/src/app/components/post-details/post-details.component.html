@@ -7,8 +7,19 @@
     <h1 class="text-3xl underline"> {{post.title}} </h1>
     <h2 class="text-2xl" > {{post.text}} </h2>
 </div>
-
 </div>
+<div>
+    <h1 class="text-3xl">Comments</h1>
+        <div class="relative w-50 max-w-[100%]">
+        <form [formGroup]="createCommentForm" (ngSubmit)="onSubmitComment()">
+            <input type="text" placeholder=" make a comment" formControlName="text" class="flex-1 rounded" >
+            <input type="submit" value="submit comment" class="absolute rounded bg-stone-50 h-[100%] space-x-10" >
+    
+        </form>
+        </div>
+    </div>
+    
+
 
 <div *ngIf="!post" class="py-[20%] sm:py-[10%] 2xl:py-[5%] " >
     <h1> oops, reload the page otherwise report this as a bug  </h1>

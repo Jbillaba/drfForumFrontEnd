@@ -13,8 +13,10 @@ export class ForumapiService {
   
   private API_USERS_ENDPOINT = 'http://localhost:8000/users/'
   private API_POSTS_ENDPOINT = 'http://localhost:8000/posts/?ordering=-created_on'
+  private API_GET_POSTS_ENDPOINT = 'http://localhost:8000/posts/'
   private API_REGISTER_ENDPOINT = 'http://localhost:8000/api/register/'
   private API_LOGIN_ENDPOINT = 'http://localhost:8000/api/token/'
+  private API_COMMENT_ENDPOINT ='http://localhost:8000/comments/'
 
   constructor(private httpClient: HttpClient,
               private storageService: StorageService,
@@ -44,12 +46,15 @@ export class ForumapiService {
   }
 
   getPost(postId: string ){
-    return this.httpClient.get(this.API_POSTS_ENDPOINT + postId + "/")
+    return this.httpClient.get(this.API_GET_POSTS_ENDPOINT + postId + "/")
   }
 
   createPost(title: string, text: string) {
-    console.log(this.httpOptions)
     return this.httpClient.post(this.API_POSTS_ENDPOINT, {title, text}, this.httpOptions)
+  }
+  
+  createComment(text: string){
+    return this.httpClient.post(this.API_COMMENT_ENDPOINT, {text}, this.httpOptions)
   }
 
   userRegister(email: string, username: string, name: string, password: string, password2: string){
