@@ -35,6 +35,7 @@ export class PostDetailsComponent {
     const postUrl = this.post.url;
     if (val.text){
       this.forumApiService.createComment(val.text, postUrl).subscribe(comment => (comment))
+      location.reload();
     }
   }
 

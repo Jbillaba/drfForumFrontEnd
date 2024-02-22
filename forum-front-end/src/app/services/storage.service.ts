@@ -12,9 +12,11 @@ export class StorageService {
 
   clean(): void{
     this.sessionStorage?.clear()
+    location.reload();
   }
 
   public saveUser(user: any): void {
+    location.reload();
     this.sessionStorage?.removeItem(USER_KEY);
     this.sessionStorage?.setItem(USER_KEY, JSON.stringify(user))
   }
