@@ -3,6 +3,7 @@ import { ForumapiService } from '../../services/forumapi.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { response } from 'express';
 
 @Component({
   selector: 'app-post-details',
@@ -13,6 +14,7 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angula
 })
 export class PostDetailsComponent {
   post: any;
+  postComments: any;
   
   constructor(private forumApiService:ForumapiService,
               private route: ActivatedRoute){}
@@ -25,6 +27,7 @@ export class PostDetailsComponent {
     const postIdFromRoute = Number(routeParameter.get("postid"))
     const postIdToString = postIdFromRoute.toString()
     this.forumApiService.getPost(postIdToString).subscribe(response => this.post = response)
+    this.forumApiService.getPostComments(postIdToString).subscribe(response => this.postComments = response)
   }
 
   onSubmitComment(){

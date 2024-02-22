@@ -17,6 +17,7 @@ export class ForumapiService {
   private API_REGISTER_ENDPOINT = 'http://localhost:8000/api/register/'
   private API_LOGIN_ENDPOINT = 'http://localhost:8000/api/token/'
   private API_COMMENT_ENDPOINT ='http://localhost:8000/comments/'
+  private API_POST_COMMENTS_ENDPOINT = 'http://localhost:8000/comments/?search='
 
   constructor(private httpClient: HttpClient,
               private storageService: StorageService,
@@ -58,6 +59,10 @@ export class ForumapiService {
     return this.httpClient.post(this.API_COMMENT_ENDPOINT, {text, post}, this.httpOptions)
   }
 
+  getPostComments(postId:string){
+    return this.httpClient.get(this.API_POST_COMMENTS_ENDPOINT + postId)
+  }
+
   userRegister(email: string, username: string, name: string, password: string, password2: string){
     return this.httpClient.post(this.API_REGISTER_ENDPOINT, {email, username, name, password, password2}, this.httpOptions)
   }
@@ -65,6 +70,8 @@ export class ForumapiService {
   logIn(username: string, password: string){
     return this.httpClient.post(this.API_LOGIN_ENDPOINT, {username, password})
   }
+
+  
 
   //find a way to implement a log out function 
 
