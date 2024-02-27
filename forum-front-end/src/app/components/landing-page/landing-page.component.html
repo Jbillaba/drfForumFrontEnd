@@ -1,32 +1,20 @@
-<div class=" py-[20%] sm:py-[10%] 2xl:py-[5%]  " > 
+<div class="py-[20%] sm:py-[10%] 2xl:py-[5%] max-w-[55%] m-auto"> 
 
-    <div *ngIf="!loggedIn" >
-    <input (click)="goToSubmitPost()" type="text" class="min-w-[30%] rounded border-gray-400 hover:border-gray-600" placeholder="log in to submit a post..."> 
-</div>
-<div *ngIf="loggedIn" >
-    <input (click)="goToSubmitPost()" type="text" class="min-w-[30%] rounded border-gray-400 hover:border-gray-600" placeholder="post something...">
-</div>
-
-
-<div *ngFor="let post of posts" class="flex flex-col items-center p-[1%]">
-    <a [routerLink]="['/post', post.id]">    
-    <div class="border border-gray-400 rounded hover:border-gray-600 bg-white">
-            <div class="space-x-[4%]">
-                <div class="flex flex-row space-x-[2%] text-slate-400">
-                    <p class="">posted by {{post.op}}</p> <p>{{ post.created_on }} </p>
-                </div>
-                <div class="py-[5%]">
-                    <h2 class="mb-2 text-xl font-semibold text-left "> {{post.title}} </h2>
-                    <p class="text-left" > {{post.text}} </p>
-                </div>
-        </div>
+    <div *ngFor="let post of posts" class="flex flex-col py-[1%] border-slate-700 border-t-2">
+        <a [routerLink]="['/post', post?.id]">    
+            <div class="rounded  space-x-[2%]">
+                <div class="flex flex-row space-x-[2%] text-slate-400 ">
+                   <p>posted by {{post?.op}}</p> <p>{{ post?.created_on }} </p>
+                </div>                
+    
+                <h2 class="mb-2 text-xl font-semibold text-left "> {{post?.title}} </h2>
+                <p class="text-left" > {{post?.text}} </p>
+            </div>
+        </a>
     </div>
-    </a>
-</div>
-
-<div *ngIf="!posts" class="py-[10%]">
-    <h1 class="text-xl" >Nothing to see here...</h1>
-    <p> please reload the page if the issue persists please submit a bug report </p>
-</div>
-
+    
+    <div *ngIf="!posts" class="py-[10%]">
+        <h1 class="text-xl" >Nothing to see here...</h1>
+        <p> please reload the page if the issue persists please submit a bug report </p>
+    </div>
 </div>
