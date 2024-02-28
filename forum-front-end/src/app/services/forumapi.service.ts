@@ -27,9 +27,13 @@ export class ForumapiService {
               private jwtHelper: JwtHelperService) { }
   
   
-  httpOptions = {
+  AuthHttpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', "Authorization": `Bearer ${this.storageService.getToken()}`})
-};
+  };
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+  }
 
   getUsers(){
     return this.httpClient.get(this.API_USERS_ENDPOINT)
@@ -59,11 +63,11 @@ export class ForumapiService {
 
 
   createPost(title: string, text: string) {
-    return this.httpClient.post(this.API_GET_POSTS_ENDPOINT, {title, text}, this.httpOptions)
+    return this.httpClient.post(this.API_GET_POSTS_ENDPOINT, {title, text}, this.AuthHttpOptions)
   }
   
   createComment(text: string, post: string){
-    return this.httpClient.post(this.API_COMMENT_ENDPOINT, {text, post}, this.httpOptions)
+    return this.httpClient.post(this.API_COMMENT_ENDPOINT, {text, post}, this.AuthHttpOptions)
   }
 
   getPostComments(postId:string){
