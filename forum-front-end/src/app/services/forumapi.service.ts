@@ -12,7 +12,8 @@ let authToken: any;
 export class ForumapiService {
   
   private API_USERS_ENDPOINT = 'http://localhost:8000/users/'
-  private API_POSTS_ENDPOINT = 'http://localhost:8000/posts/?ordering=-created_on'
+  private API_RECENT_POSTS_ENDPOINT = 'http://localhost:8000/posts/?ordering=-created_on'
+  private API_OLDEST_POSTS_ENDPOINT = 'http://localhost:8000/posts/?ordering=created_on'
   private API_GET_POSTS_ENDPOINT = 'http://localhost:8000/posts/'
   private API_REGISTER_ENDPOINT = 'http://localhost:8000/api/register/'
   private API_LOGIN_ENDPOINT = 'http://localhost:8000/api/token/'
@@ -42,8 +43,12 @@ export class ForumapiService {
    return decodedToken
   }
 
-  getPosts(){
-    return this.httpClient.get(this.API_POSTS_ENDPOINT)
+  getRecentPosts(){
+    return this.httpClient.get(this.API_RECENT_POSTS_ENDPOINT)
+  }
+
+  getOldestPosts(){
+    return this.httpClient.get(this.API_OLDEST_POSTS_ENDPOINT)
   }
 
   getPost(postId: string ){
@@ -52,7 +57,7 @@ export class ForumapiService {
 
 
   createPost(title: string, text: string) {
-    return this.httpClient.post(this.API_POSTS_ENDPOINT, {title, text}, this.httpOptions)
+    return this.httpClient.post(this.API_GET_POSTS_ENDPOINT, {title, text}, this.httpOptions)
   }
   
   createComment(text: string, post: string){
@@ -70,9 +75,4 @@ export class ForumapiService {
   logIn(username: string, password: string){
     return this.httpClient.post(this.API_LOGIN_ENDPOINT, {username, password})
   }
-
-  
-
-  //find a way to implement a log out function 
-
 }

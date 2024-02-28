@@ -19,9 +19,12 @@
         </form>
     </div>
 
-    <div *ngFor="let postComment of postComments" class="flex flex-col rounded m-auto bg-stone-50 w-[50%]">
-        <p>posted by, {{postComment?.op}}</p>
-        <p>posted, {{postComment?.created_on}}</p>
+    <div *ngFor="let postComment of postComments" class="flex flex-col rounded m-auto bg-stone-50 w-[50%] p-[1%]">
+        <div class="flex flex-row space-x-[1%] justify-center">
+            <p>posted by, {{postComment?.op}}</p>
+            <p>posted, {{postComment?.created_on}}</p>
+        </div>
+        
         <h1 class="text-3xl font-light " >{{postComment?.text}}</h1>
     </div>
     <div *ngIf="post?.number_of_comments==0">

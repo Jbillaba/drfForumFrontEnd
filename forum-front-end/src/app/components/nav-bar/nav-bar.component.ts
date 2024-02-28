@@ -18,23 +18,5 @@ export class NavBarComponent {
               public forumApiService: ForumapiService) {}
 
   ngOnInit(): void {
-    this.setVisibility()
   }
-
-  toggleVisiblity(isVisible: boolean): void {
-    this.isVisible = isVisible;
-    this.setVisibility();
-  }
-  
-  private setVisibility(): void {
-    this.visibilityClasses = {
-      'opacity-0': !this.isVisible,
-      'opacity-100': this.isVisible
-    }
-  }
-  
-  
-
-
-
 }
