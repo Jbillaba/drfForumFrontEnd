@@ -18,6 +18,8 @@ export class ForumapiService {
   private API_REGISTER_ENDPOINT = 'http://localhost:8000/api/register/'
   private API_LOGIN_ENDPOINT = 'http://localhost:8000/api/token/'
   private API_COMMENT_ENDPOINT ='http://localhost:8000/comments/'
+  private API_POST_RECENT_COMMENT_ENDPOINT ='http://localhost:8000/comments/?ordering=-created_on&search='
+  private API_POST_OLDEST_COMMENT_ENDPOINT ='http://localhost:8000/comments/?ordering=created_on&search='
   private API_POST_COMMENTS_ENDPOINT = 'http://localhost:8000/comments/?search='
 
   constructor(private httpClient: HttpClient,
@@ -66,6 +68,14 @@ export class ForumapiService {
 
   getPostComments(postId:string){
     return this.httpClient.get(this.API_POST_COMMENTS_ENDPOINT + postId)
+  }
+
+  getRecentPostComments(postId:string){
+    return this.httpClient.get(this.API_POST_RECENT_COMMENT_ENDPOINT + postId)
+  }
+
+  getOldestPostComments(postId:string){
+    return this.httpClient.get(this.API_POST_OLDEST_COMMENT_ENDPOINT + postId)
   }
 
   userRegister(email: string, username: string, name: string, password: string, password2: string){

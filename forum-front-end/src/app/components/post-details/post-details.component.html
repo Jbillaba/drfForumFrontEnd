@@ -1,21 +1,20 @@
-<div *ngIf="post" class="py-[20%] sm:py-[10%] 2xl:py-[5%] bg-stone-50 " >
-    <div class="flex flex-row justify-center space-x-[1%]">
-        <p> posted by, {{post?.op}} </p> 
-        <p> submitted, {{post?.created_on}} </p> 
-    </div>
-
-    <div class="py-[5%]">
-        <h1 class="text-3xl underline"> {{post?.title}} </h1>
-        <h2 class="text-2xl py-[3%] " > {{post?.text}} </h2>
+<div class="py-[10%] small:py-[10%] 2xl:py-[5%] " >
+    <div *ngIf="post" class=" p-[1%] m-auto rounded bg-white max-w-[50%]" >
+        <div class="flex flex-row justify-center space-x-[2%]">
+            <p> posted by, {{post?.op}} </p> 
+            <p> submitted, {{post?.created_on}} </p> 
+        </div>
+            <h1 class="text-3xl underline"> {{post?.title}} </h1>
+            <h2 class="text-2xl py-[3%] " > {{post?.text}} </h2>
     </div>
 </div>
 
 <!-- comment creation form below-->
 <div class="space-y-[1%]">
-    <h1 class="text-3xl py-[1%]">all {{post?.number_of_comments}} comments</h1>
+    <h1 class="text-3xl">all {{post?.number_of_comments}} comments</h1>
     <div class="relative py-[1%] ">
         <form [formGroup]="createCommentForm" (ngSubmit)="onSubmitComment()" class="space-x-1">
-            <input type="text" placeholder=" make a comment" formControlName="text" class="flex-1 rounded" >
+            <input type="text" placeholder=" make a comment" formControlName="text" class="flex-1 rounded p-[1%]" >
             <input type="submit" value="save" class="absolute rounded bg-stone-50 p-[1%]" >
         </form>
     </div>
@@ -29,7 +28,7 @@
         </select>
     </div>
     <div *ngFor="let postComment of postComments" class="flex flex-col rounded m-auto bg-stone-50 w-[50%] p-[1%]">
-        <div class="flex flex-row space-x-[1%] justify-center">
+        <div class="flex flex-row space-x-[2%] justify-center">
             <p>posted by, {{postComment?.op}}</p>
             <p>posted, {{postComment?.created_on}}</p>
         </div>

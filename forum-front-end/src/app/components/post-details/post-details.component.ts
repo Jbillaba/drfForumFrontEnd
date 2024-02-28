@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { ForumapiService } from '../../services/forumapi.service';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { response } from 'express';
 
@@ -17,7 +17,9 @@ export class PostDetailsComponent {
   postComments: any;
   
   constructor(private forumApiService:ForumapiService,
-              private route: ActivatedRoute){}
+              private route: ActivatedRoute,
+              @Inject(DOCUMENT) private document: Document){}
+  private selectMenu = this.document.querySelector('select');
   createCommentForm = new FormGroup({
     text: new FormControl('', [Validators.required])
   })
@@ -27,7 +29,8 @@ export class PostDetailsComponent {
     const postIdFromRoute = Number(routeParameter.get("postid"))
     const postIdToString = postIdFromRoute.toString()
     this.forumApiService.getPost(postIdToString).subscribe(response => this.post = response)
-    this.forumApiService.getPostComments(postIdToString).subscribe(response => this.postComments = response)
+    this.forumApiService.getRecentPostComments(postIdToString).subscribe(response => this.postComments = response)
+    this.renderCommentOrder(postIdToString)
   }
 
   onSubmitComment(){
@@ -37,6 +40,25 @@ export class PostDetailsComponent {
       this.forumApiService.createComment(val.text, postUrl).subscribe(comment => (comment))
       location.reload();
     }
+  }
+
+  renderCommentOrder(postId: string){
+    this.selectMenu?.addEventListener('change', () => {
+      const selectMenuValue = this.selectMenu?.value;
+      switch(selectMenuValue) {
+        case "Recent" : {
+          return this.forumApiService.getRecentPostComments(postId).subscribe(response => {this.postComments = response})
+          break;
+        }
+        case "Oldest" : {
+          return this.forumApiService.getOldestPostComments(postId).subscribe(response => {this.postComments = response})
+          break;
+        }
+        default: {
+          return this.forumApiService.getRecentPostComments(postId).subscribe(response => {this.postComments = response})
+        }
+      }
+    })
   }
 
 }

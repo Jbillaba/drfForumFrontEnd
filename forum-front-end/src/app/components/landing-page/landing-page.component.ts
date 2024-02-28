@@ -21,23 +21,7 @@ export class LandingPageComponent implements OnInit{
   private selectMenu = this.document.querySelector('select');
 
   ngOnInit(): void {
-    this.selectMenu?.addEventListener('change', () => {
-      const selectMenuValue = this.selectMenu?.value;
-      switch(selectMenuValue) {
-        case "Recent" : {
-          return this.forumApiService.getRecentPosts().subscribe(response => {this.posts = response})
-          break;
-        }
-        case "Oldest": {
-          return this.forumApiService.getOldestPosts().subscribe(response => {this.posts = response })
-          break
-        }
-        default: {
-          return this.forumApiService.getRecentPosts().subscribe(response => {this.posts = response})
-          break;
-        }
-      }
-    })
+    this.renderPostOrder()
     this.forumApiService.getRecentPosts().subscribe(response => {this.posts = response})
     this.loggedIn = this.storageService.isLoggedIn()
   }
@@ -48,4 +32,25 @@ export class LandingPageComponent implements OnInit{
   }
   else this.router.navigateByUrl("/submitpost")
  }
+
+ renderPostOrder(){
+  this.selectMenu?.addEventListener('change', () => {
+    const selectMenuValue = this.selectMenu?.value;
+    switch(selectMenuValue) {
+      case "Recent" : {
+        return this.forumApiService.getRecentPosts().subscribe(response => {this.posts = response})
+        break;
+      }
+      case "Oldest": {
+        return this.forumApiService.getOldestPosts().subscribe(response => {this.posts = response })
+        break
+      }
+      default: {
+        return this.forumApiService.getRecentPosts().subscribe(response => {this.posts = response})
+        break;
+      }
+    }
+  })
+ }
+
 }
