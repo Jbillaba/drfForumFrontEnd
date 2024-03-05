@@ -5,6 +5,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { PostDetailsComponent } from './components/post-details/post-details.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 
 export const routes: Routes = [
     {path: '', component: LandingPageComponent},
@@ -12,5 +13,7 @@ export const routes: Routes = [
     {path: 'register', component: RegisterPageComponent},
     {path: 'submitpost', component: CreatePostComponent},
     {path: 'post/:postid', component: PostDetailsComponent },
+    {path: 'user/:userid', component: UserDetailComponent},
     {path:'**', component: PageNotFoundComponent},
+
 ];
